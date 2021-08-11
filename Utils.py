@@ -2,7 +2,6 @@
 
 import inspect
 import os
-import re
 
 # 当前脚本文件所在的目录
 PATH_SHELL_ROOT_DIR = os.getcwd()
@@ -70,7 +69,7 @@ def cmd(cmd):
 
 
 # 执行CMD命令，并获得结果
-def popen(cmd):
+def popen(cmd) -> str:
     popen = os.popen(cmd)
     read = popen.read()
     popen.close()
@@ -93,3 +92,9 @@ def _isAndroidProject(dir):
     for _str in ['settings.gradle', 'gradlew.bat', 'gradle.properties', 'build.gradle', 'settings.gradle']:
         if not os.path.exists(f'{dir}{SEPARATOR}{_str}'): return False
     return True
+
+# 移除数组中的空对象
+def removeNull(array):
+    while '' in array:
+        array.remove('')
+    return array
