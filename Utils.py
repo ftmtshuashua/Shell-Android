@@ -2,6 +2,7 @@
 
 import inspect
 import os
+import re
 
 # 当前脚本文件所在的目录
 PATH_SHELL_ROOT_DIR = os.getcwd()
@@ -66,6 +67,14 @@ def getAbsPath(file):
 def cmd(cmd):
     print('CMD:', cmd)
     os.system(cmd)
+
+
+# 执行CMD命令，并获得结果
+def popen(cmd):
+    popen = os.popen(cmd)
+    read = popen.read()
+    popen.close()
+    return read
 
 
 # 查找工程跟目录 - 如果该文件在Android项目内
